@@ -7,11 +7,9 @@
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Remove="AutoMapper" />
-		<None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
-		<None Remove="AutoMapper.Extensions.ExpressionMapping" />
-		<None Remove="Services\" />
-		<None Remove="Microsoft.EntityFrameworkCore" />
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>AutoPocoIO.Repository.Test</_Parameter1>
+		</AssemblyAttribute>
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.1" />

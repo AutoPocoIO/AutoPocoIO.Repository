@@ -13,7 +13,9 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+		<PackageReference Include="Moq" Version="4.17.2" />
 		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.assert" Version="2.4.1" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -24,17 +26,7 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
 	</ItemGroup>
-	<ItemGroup>
-		<None Remove="Services\" />
-		<None Remove="TestUtilities\" />
-		<None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
-		<None Remove="Services\TestUtilities\" />
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Services\" />
-		<Folder Include="TestUtilities\" />
-		<Folder Include="Services\TestUtilities\" />
-	</ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\AutoPocoIO.Repository.csproj" />
 	</ItemGroup>

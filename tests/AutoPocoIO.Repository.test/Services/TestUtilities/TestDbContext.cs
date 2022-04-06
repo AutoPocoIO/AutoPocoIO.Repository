@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace AutoPocoIO.Repository.Test.TestUtilities;
+namespace AutoPocoIO.Repository.Test.Services.TestUtilities;
 
 public class TestDbContext : DbContext
 {
@@ -11,9 +11,5 @@ public class TestDbContext : DbContext
     public DbSet<PersonEntity> People => Set<PersonEntity>();
 }
 
-public class PersonEntity : IEntity
-{
-    public int Id { get; set; }
-    public string Name { get; set; } = default!;
-}
+
 

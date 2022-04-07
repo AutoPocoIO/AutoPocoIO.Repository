@@ -1,0 +1,12 @@
+# Add this to your YML file
+install:
+ - cinst opencover.portable
+ - cinst codecov
+
+test: off
+
+test_script:
+ - ps: ./coverage.ps1
+
+after_test:
+ - codecov -f coverage.xml

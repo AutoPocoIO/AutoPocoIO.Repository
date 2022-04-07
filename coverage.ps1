@@ -6,7 +6,7 @@ $openCover = 'C:\ProgramData\chocolatey\lib\opencover.portable\tools\OpenCover.C
 
 $target = '-target:C:\Program Files\dotnet\dotnet.exe'
 $targetArgs = '-targetargs:"test -c:' + $buildConfig + ' --logger:trx;LogFileName=results.trx /p:DebugType=full"' 
-$filter = '-filter:+[*]*-[*.Tests]*'
+$filter = '-filter:+[*]*-[*.Test]*'
 $output = '-output:' + $buildFolder + '\coverage.xml'
 $register = if ($ENV:APPVEYOR -eq $true ) { '-register' } else { '-register:user' } # Magical parameter that breaks things
 

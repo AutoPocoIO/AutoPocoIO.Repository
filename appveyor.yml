@@ -7,6 +7,9 @@ install:
 
 test: off
 
+before_build:
+ - nuget restore
+ 
 test_script:
  - ps: ./coverage.ps1
 

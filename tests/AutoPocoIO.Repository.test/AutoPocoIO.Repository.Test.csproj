@@ -7,6 +7,9 @@
 		<IsPackable>false</IsPackable>
 		<RootNamespace>AutoPocoIO.Repository.Test</RootNamespace>
 		<AssemblyName>AutoPocoIO.Repository.Test</AssemblyName>
+		<ReleaseVersion>1.0.0-alpha</ReleaseVersion>
+		<AssemblyOriginatorKeyFile>..\..\AutoPocoIO.snk</AssemblyOriginatorKeyFile>
+		<SignAssembly>true</SignAssembly>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<WarningLevel>4</WarningLevel>
@@ -26,7 +29,6 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
 	</ItemGroup>
-
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\AutoPocoIO.Repository.csproj" />
 	</ItemGroup>

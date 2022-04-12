@@ -3,7 +3,7 @@ using AutoMapper;
 
 namespace AutoPocoIO.Repository.Services;
 public class RepositoryServiceAsync<TEntiy, TDto> : IRepositoryServiceAsync<TEntiy, TDto>
-    where TDto : IEntityDto, IMapFrom
+    where TDto : IEntityDto
     where TEntiy : IEntity
 {
     private IRepositoryAsync<TEntiy> _repository;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+
 namespace AutoPocoIO.Repository;
 
 /// <summary>
@@ -6,5 +7,6 @@ namespace AutoPocoIO.Repository;
 /// </summary>
 public interface IEntityDto
 {
+    void Mapping(Profile profile);
 }
 

@@ -12,20 +12,20 @@ using Xunit;
 namespace AutoPocoIO.Repository.Test.Internal;
 public class MappingProfileTests
 {
-    public  static IEnumerable<object[]> _data => new List<object[]>()
+    public static IEnumerable<object[]> _data => new List<object[]>()
     {
          new object[]{ new MappingProfile(), "AutoPocoIO.Repository"},
          new object []{ new MappingProfile(typeof(MappingProfileTests).Assembly), "AutoPocoIO.Repository.Test" }
     };
 
-    public class PersonDtoWithMap: IEntityDto, IMapFrom
+    public class PersonDtoWithMap : IEntityDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = default!;
 
         public void Mapping(Profile profile)
         {
-           profile.CreateMap<PersonEntity, PersonDtoWithMap>();
+            profile.CreateMap<PersonEntity, PersonDtoWithMap>();
         }
     }
 

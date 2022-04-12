@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 
 namespace AutoPocoIO.Repository.Test.Services.TestUtilities;
 #pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
@@ -24,7 +19,7 @@ public class PersonEntity : IEntity, IEquatable<PersonEntity>
     }
 }
 
-public class PersonDto : IEntityDto, IMapFrom, IEquatable<PersonDto>
+public class PersonDto : IEntityDto, IEquatable<PersonDto>
 {
     public int Id { get; set; }
     public string Name { get; set; } = default!;
@@ -33,7 +28,7 @@ public class PersonDto : IEntityDto, IMapFrom, IEquatable<PersonDto>
     {
         return other != null && other.Id == Id && other.Name == Name;
     }
-   
+
 
     public void Mapping(Profile profile)
     {

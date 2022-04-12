@@ -2,15 +2,15 @@
 using AutoMapper;
 
 namespace AutoPocoIO.Repository.Internal;
-internal class MappingProfile: Profile
+internal class MappingProfile : Profile
 {
-    public MappingProfile(): base(Assembly.GetExecutingAssembly().GetName().Name)
+    public MappingProfile() : base(Assembly.GetExecutingAssembly().GetName().Name)
     {
         ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-        
+
     }
 
-    public MappingProfile(Assembly assembly): base(assembly.GetName().Name)
+    public MappingProfile(Assembly assembly) : base(assembly.GetName().Name)
     {
         ApplyMappingsFromAssembly(assembly);
     }
@@ -18,12 +18,12 @@ internal class MappingProfile: Profile
     private void ApplyMappingsFromAssembly(Assembly assembly)
     {
         var types = assembly.GetExportedTypes()
-            .Where(c => typeof(IMapFrom).IsAssignableFrom(c) && !c.IsInterface && !c.IsAbstract);
+            .Where(c => typeof(IEntityDto).IsAssignableFrom(c) && !c.IsInterface && !c.IsAbstract);
 
         foreach (var type in types)
         {
             var instance = Activator.CreateInstance(type);
-            var methodInfo = type.GetMethod(nameof(IMapFrom.Mapping));
+            var methodInfo = type.GetMethod(nameof(IEntityDto.Mapping));
             methodInfo!.Invoke(instance, new object[] { this });
         }
 

@@ -5,15 +5,24 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
-		<ReleaseVersion>1.0.0-alpha</ReleaseVersion>
+		<Version>1.0.0-alpha</Version>
 		<AssemblyOriginatorKeyFile>..\AutoPocoIO.snk</AssemblyOriginatorKeyFile>
 		<SignAssembly>true</SignAssembly>
 		<PackageId>AutoPocoIO.Repository</PackageId>
 		<RepositoryType>git</RepositoryType>
 		<PackageIcon>AutoPocoIcon.jpeg</PackageIcon>
 		<RepositoryUrl>https://github.com/AutoPocoIO/AutoPocoIO.Repository</RepositoryUrl>
+		<Summary>Generic Repository with AutoMapper</Summary>
 		<Description>Generic Repository with AutoMapper</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Authors>AutoPocoIO</Authors>
+		<Company>AutoPocoIO</Company>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<Deterministic>true</Deterministic>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
 	</PropertyGroup>
 	<ItemGroup>
 		<None Include="..\AutoPocoIcon.jpeg" Pack="true" PackagePath="" />
@@ -27,6 +36,10 @@
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
 		<PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="5.0.1" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1'">
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="[3.1.0,6.0.0)" />

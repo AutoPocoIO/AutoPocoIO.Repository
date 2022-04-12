@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPocoIO.Repository.Test", "tests\AutoPocoIO.Repository.test\AutoPocoIO.Repository.Test.csproj", "{A17C4375-4127-4AF2-BA45-4348B1BCCAF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPocoIO.Repository.Test", "tests\AutoPocoIO.Repository.Test\AutoPocoIO.Repository.Test.csproj", "{A17C4375-4127-4AF2-BA45-4348B1BCCAF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

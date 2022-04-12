@@ -15,10 +15,11 @@ public static class DataServiceCollectionExtensions
     {
         services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
         services.AddTransient(typeof(IRepositoryServiceAsync<,>), typeof(RepositoryServiceAsync<,>));
+        services.AddScoped(typeof(IRepositoryFactory<>), typeof(RepositoryFactory<>));
+
         services.AddAutoMapper(c => c.AddExpressionMapping()
                                       .AddProfileAssemblies(profileAssemblies),
                                 typeof(MappingProfile));
-
 
         return services;
     }

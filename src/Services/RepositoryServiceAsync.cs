@@ -2,14 +2,16 @@
 using AutoMapper;
 
 namespace AutoPocoIO.Repository.Services;
-public class RepositoryServiceAsync<TEntiy, TDto> : IRepositoryServiceAsync<TEntiy, TDto>
+
+/// <inheritdoc/>
+public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEntity, TDto>
     where TDto : IEntityDto
-    where TEntiy : IEntity
+    where TEntity : IEntity
 {
-    private IRepositoryAsync<TEntiy> _repository;
+    private IRepositoryAsync<TEntity> _repository;
     private IMapper _mapper;
 
-    public RepositoryServiceAsync(IRepositoryAsync<TEntiy> repository, IMapper mapper)
+    public RepositoryServiceAsync(IRepositoryAsync<TEntity> repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
@@ -18,7 +20,7 @@ public class RepositoryServiceAsync<TEntiy, TDto> : IRepositoryServiceAsync<TEnt
     /// <inheritdoc/>
     public async Task AddAsync(TDto dto)
     {
-        var entity = _mapper.Map<TEntiy>(dto);
+        var entity = _mapper.Map<TEntity>(dto);
         await _repository.AddAsync(entity);
     }
 
@@ -33,7 +35,7 @@ public class RepositoryServiceAsync<TEntiy, TDto> : IRepositoryServiceAsync<TEnt
     /// <inheritdoc/>
     public IQueryable<TDto> GetAll(Expression<Func<TDto, bool>>? expression = null)
     {
-        var predicate = _mapper.Map<Expression<Func<TEntiy, bool>>>(expression);
+        var predicate = _mapper.Map<Expression<Func<TEntity, bool>>>(expression);
         return _mapper.ProjectTo<TDto>(_repository.GetAll(predicate));
     }
 
@@ -50,7 +52,7 @@ public class RepositoryServiceAsync<TEntiy, TDto> : IRepositoryServiceAsync<TEnt
     /// <inheritdoc/>
     public async Task<TDto?> GetFirstAsync(Expression<Func<TDto, bool>> expression)
     {
-        var predicate = _mapper.Map<Expression<Func<TEntiy, bool>>>(expression);
+        var predicate = _mapper.Map<Expression<Func<TEntity, bool>>>(expression);
         var entity = await _repository.GetFirstAsync(predicate);
         if (entity == null)
             return default;
@@ -61,7 +63,7 @@ public class RepositoryServiceAsync<TEntiy, TDto> : IRepositoryServiceAsync<TEnt
     /// <inheritdoc/>
     public async Task UpdateAsync(TDto entityDto)
     {
-        var entity = _mapper.Map<TEntiy>(entityDto);
+        var entity = _mapper.Map<TEntity>(entityDto);
         await _repository.UpdateAsync(entity);
     }
 }

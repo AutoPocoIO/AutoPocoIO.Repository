@@ -154,4 +154,13 @@ public class RepositoryServiceAsyncTests : SqliteTestBase<TestDbContext>
 
         _repository.Verify();
     }
+
+    [Fact]
+    public async Task SaveChanges_SavesChangesInRepository()
+    {
+        _repository.Setup(c => c.SaveChangesAsync()).Verifiable();
+        await _service.SaveChangesAsync();
+
+        _repository.Verify();
+    }
 }

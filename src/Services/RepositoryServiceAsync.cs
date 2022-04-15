@@ -70,6 +70,12 @@ public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEn
     }
 
     /// <inheritdoc/>
+    public Task SaveChangesAsync()
+    {
+        return _repository.SaveChangesAsync();
+    }
+
+    /// <inheritdoc/>
     public async Task UpdateAsync(TDto entityDto)
     {
         var entity = _mapper.Map<TEntity>(entityDto);

@@ -157,5 +157,18 @@ public class RepositoryAsyncTests : SqliteTestBase<TestDbContext>
         Assert.Equal(EntityState.Modified, context.Entry(entity).State);
     }
 
+    [Fact]
+    public async Task SaveChanges_PushesChanges()
+    {
+        using var context = new TestDbContext(Options);
+        var repo = new RepositoryAsync<PersonEntity>(context);
+
+        var entity = context.People.First();
+        await repo.UpdateAsync(entity);
+        await repo.SaveChangesAsync();
+
+        Assert.Equal(EntityState.Unchanged, context.Entry(entity).State);
+    }
+
 
 }

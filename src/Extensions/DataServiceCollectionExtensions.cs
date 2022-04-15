@@ -7,8 +7,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AutoPocoIO.Repository.Extensions;
 
+/// <summary>
+/// Extension methods for adding required services and mappings
+/// </summary>
 public static class DataServiceCollectionExtensions
 {
+    /// <summary>
+    /// Add required services and create all mappings
+    /// </summary>
+    /// <param name="services">The service collection to add to.</param>
+    /// <param name="profileAssemblies">Assemblies that include entites and dtos to map</param>
+    /// <returns>The service collection to chain calls</returns>
     public static IServiceCollection AddGenericMappingServices(
         this IServiceCollection services,
         params Assembly[] profileAssemblies)

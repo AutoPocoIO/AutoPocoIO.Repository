@@ -3,7 +3,11 @@ using AutoMapper;
 
 namespace AutoPocoIO.Repository.Services;
 
-/// <inheritdoc/>
+/// <summary>
+/// Data acccess and mapping service from <typeparamref name="TEntity"/> to <typeparamref name="TDto"/>
+/// </summary>
+/// <typeparam name="TEntity">Database model to map from</typeparam>
+/// <typeparam name="TDto">Data transfer object to map to</typeparam>
 public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEntity, TDto>
     where TDto : IEntityDto
     where TEntity : IEntity
@@ -11,6 +15,11 @@ public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEn
     private IRepositoryAsync<TEntity> _repository;
     private IMapper _mapper;
 
+    /// <summary>
+    /// Initalizes a new instance of <see cref="RepositoryServiceAsync{TEntity, TDto}"/>
+    /// </summary>
+    /// <param name="repository">Database access service</param>
+    /// <param name="mapper">Mapping configuration</param>
     public RepositoryServiceAsync(IRepositoryAsync<TEntity> repository, IMapper mapper)
     {
         _repository = repository;

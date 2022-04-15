@@ -7,6 +7,10 @@ namespace AutoPocoIO.Repository;
 /// </summary>
 public interface IEntityDto
 {
+    /// <summary>
+    /// Configuration for mapping to entity.
+    /// </summary>
+    /// <param name="profile">Profile to add the mappings to</param>
     void Mapping(Profile profile);
 }
 

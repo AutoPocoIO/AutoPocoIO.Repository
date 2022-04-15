@@ -3,15 +3,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutoPocoIO.Repository.Services;
 
+/// <summary>
+/// Data access services to a table represented by <typeparamref name="TEntity"/>
+/// </summary>
+/// <typeparam name="TEntity">Database model to interact with</typeparam>
 public class RepositoryAsync<TEntity> : IRepositoryAsync<TEntity> where TEntity : class, IEntity
 {
     private readonly DbContext _context;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RepositoryAsync{TEntity}"/>
+    /// </summary>
+    /// <param name="context"><see cref="DbContext"/> to query</param>
     public RepositoryAsync(DbContext context)
     {
         _context = context;
     }
 
+    /// <inheritdoc/>
     public IQueryable<TEntity> Entities => _context.Set<TEntity>();
 
     /// <inheritdoc/>
@@ -47,6 +56,12 @@ public class RepositoryAsync<TEntity> : IRepositoryAsync<TEntity> where TEntity 
     public async Task<TEntity?> GetFirstAsync(Expression<Func<TEntity, bool>> expression)
     {
         return await _context.Set<TEntity>().FirstOrDefaultAsync(expression);
+    }
+
+    /// <inheritdoc/>
+    public Task SaveChangesAsync()
+    {
+        return _context.SaveChangesAsync();
     }
 
     /// <inheritdoc/>

@@ -16,11 +16,11 @@ public class PersonEntity : IEntity
 {
 }
 ```
-Mark all database data transfer objects with IEntityDto and IMapping
+Mark all database data transfer objects with IEntityDto
 ```csharp
 using AutoMapper;
 
-public class PersonEntityDto : IEntityDto, IMapping
+public class PersonEntityDto : IEntityDto
 {
   public void Mapping(Profile profile)
   {
@@ -29,9 +29,16 @@ public class PersonEntityDto : IEntityDto, IMapping
   }
 }
 ```
+Register services in Startup
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddGenericMappingServices(typeof(Program).Assembly);
+```
+
 ### Usage
 Inject Operation type into controller
 ```csharp
+private readonly IRepositoryServiceAsync<Entity, Dto> _service;
 public SampleController(IRepositoryServiceAsync<Entity, Dto> service)
 {
     _service = service;
@@ -45,6 +52,7 @@ var bar = _service.GetAll(c => c.Name == "test");
 ```
 Modify tables with the Dto mapped to the Entity:
 ```csharp
-var foo = await _service.AddAsync(new Dto { Name = "name1" });
+await _service.AddAsync(new Dto { Name = "name1" });
 await _service.DeleteAsync(1);
+await _service.SaveChangesAsync();
 ```

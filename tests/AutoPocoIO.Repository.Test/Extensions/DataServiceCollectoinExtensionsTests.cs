@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using Xunit;
-using AutoPocoIO.Repository.Extensions;
+﻿using AutoPocoIO.Repository.Extensions;
 using AutoPocoIO.Repository.Test.Services.TestUtilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Xunit;
 
 namespace AutoPocoIO.Repository.Test.Extensions
 {
@@ -29,4 +28,3 @@ namespace AutoPocoIO.Repository.Test.Extensions
         }
     }
 }
-

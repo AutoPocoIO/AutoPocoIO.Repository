@@ -32,4 +32,10 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\AutoPocoIO.Repository.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Extensions\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Extensions\" />
+	</ItemGroup>
 </Project>

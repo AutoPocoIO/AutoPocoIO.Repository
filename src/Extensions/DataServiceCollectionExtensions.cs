@@ -1,8 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using AutoPocoIO.Repository.Internal;
 using AutoPocoIO.Repository.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AutoPocoIO.Repository.Extensions;
@@ -30,6 +32,8 @@ public static class DataServiceCollectionExtensions
                                       .AddProfileAssemblies(profileAssemblies),
                                 typeof(MappingProfile));
 
+        services.AddDbContexts();
+
         return services;
     }
 
@@ -44,6 +48,17 @@ public static class DataServiceCollectionExtensions
         }
 
         return expression;
+    }
+
+    private static void AddDbContexts(this IServiceCollection services)
+    {
+        var dbContexts = services.Select(c => c.ServiceType)
+                                .Where(c => typeof(DbContext).IsAssignableFrom(c)).ToList();
+        if (dbContexts.Count() == 0)
+            throw new InvalidOperationException("No DbContexts found. Please register at least 1 before calling AddGenericMappingServices");
+
+        foreach (var context in dbContexts)
+            services.AddScoped(typeof(DbContext), context);
     }
 }
 

@@ -14,7 +14,7 @@ public interface IRepositoryFactory<TContext> where TContext : DbContext
     /// </summary>
     /// <typeparam name="TEntity">The type of entity for which a set should be returned.</typeparam>
     /// <returns>An instance of <see cref="IRepositoryAsync{TEntity}"/></returns>
-    IRepositoryAsync<TEntity> CreateRepository<TEntity>() where TEntity : class, IEntity;
+    IRepositoryAsync<TEntity> CreateRepository<TEntity>() where TEntity : class;
     /// <summary>
     /// Create instance of <see cref="IRepositoryServiceAsync{TEntity, TDto}"/>
     /// </summary>
@@ -23,6 +23,6 @@ public interface IRepositoryFactory<TContext> where TContext : DbContext
     /// <returns>An instance of <see cref="IRepositoryServiceAsync{TEntity, TDto}"/></returns>
     IRepositoryServiceAsync<TEntity, TDto> CreateRepositoryService<TEntity, TDto>()
         where TDto : IEntityDto
-        where TEntity : class, IEntity;
+        where TEntity : class;
 }
 

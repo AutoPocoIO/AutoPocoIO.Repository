@@ -10,7 +10,7 @@ namespace AutoPocoIO.Repository.Services;
 /// <typeparam name="TDto">Data transfer object to map to</typeparam>
 public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEntity, TDto>
     where TDto : IEntityDto
-    where TEntity : IEntity
+    where TEntity : class
 {
     private IRepositoryAsync<TEntity> _repository;
     private IMapper _mapper;

@@ -6,7 +6,7 @@ namespace AutoPocoIO.Repository.Services;
 /// Data access services to a table represented by <typeparamref name="TEntity"/>
 /// </summary>
 /// <typeparam name="TEntity">Database model to interact with</typeparam>
-public interface IRepositoryAsync<TEntity> where TEntity : IEntity
+public interface IRepositoryAsync<TEntity> where TEntity : class
 {
     /// <summary>
     /// <para>

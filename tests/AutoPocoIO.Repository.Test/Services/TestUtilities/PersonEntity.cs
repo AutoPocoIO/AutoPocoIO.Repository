@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using AutoPocoIO.Repository;
 
 namespace AutoPocoIO.Repository.Test.Services.TestUtilities;
 #pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
-public class PersonEntity : IEntity, IEquatable<PersonEntity>
+public class PersonEntity : IEquatable<PersonEntity>
 #pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
 {
     public int Id { get; set; }

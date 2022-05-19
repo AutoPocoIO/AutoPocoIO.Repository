@@ -7,7 +7,7 @@ namespace AutoPocoIO.Repository.Services;
 /// Data access services to a table represented by <typeparamref name="TEntity"/>
 /// </summary>
 /// <typeparam name="TEntity">Database model to interact with</typeparam>
-public class RepositoryAsync<TEntity> : IRepositoryAsync<TEntity> where TEntity : class, IEntity
+public class RepositoryAsync<TEntity> : IRepositoryAsync<TEntity> where TEntity : class
 {
     private readonly DbContext _context;
 

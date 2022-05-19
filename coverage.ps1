@@ -11,4 +11,4 @@ $output = '-output:' + $buildFolder + '\coverage.xml'
 $register = if ($ENV:APPVEYOR -eq $true ) { '-register' } else { '-register:user' } # Magical parameter that breaks things
 
 # Run OpenCover with all params
-& $openCover $target $targetArgs $filter $register '-oldStyle' '-mergeoutput' $output
+& $openCover $target $targetArgs $filter $register '-oldStyle' '-mergeoutput' '-returntargetcode' $output

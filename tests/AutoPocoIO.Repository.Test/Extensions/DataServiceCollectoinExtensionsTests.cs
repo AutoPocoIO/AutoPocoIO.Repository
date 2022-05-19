@@ -22,6 +22,7 @@ namespace AutoPocoIO.Repository.Test.Extensions
         {
             ServiceCollection services = new();
             services.AddDbContext<TestDbContext>();
+            services.AddGenericMappingServices();
 
             var provider = services.BuildServiceProvider();
             Assert.NotNull(provider.GetService<DbContext>());

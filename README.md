@@ -9,12 +9,6 @@
 dotnet add package AutoPocoIO.Repository
 ```
 ### How do I get started?
-Mark all database entites with IEntity
-```csharp
-public class PersonEntity : IEntity
-{
-}
-```
 Mark all database data transfer objects with IEntityDto
 ```csharp
 using AutoMapper;

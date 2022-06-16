@@ -1,13 +1,11 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
-using AutoPocoIO.Repository.Internal;
+using AutoPocoIO.Repository;
 using AutoPocoIO.Repository.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace AutoPocoIO.Repository.Extensions;
+namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
 /// Extension methods for adding required services and mappings
@@ -20,7 +18,7 @@ public static class DataServiceCollectionExtensions
     /// <param name="services">The service collection to add to.</param>
     /// <param name="profileAssemblies">Assemblies that include entites and dtos to map</param>
     /// <returns>The service collection to chain calls</returns>
-    public static IServiceCollection AddGenericMappingServices(
+    public static IServiceCollection AddAutoPocoIORepository(
         this IServiceCollection services,
         params Assembly[] profileAssemblies)
     {
@@ -54,11 +52,8 @@ public static class DataServiceCollectionExtensions
     {
         var dbContexts = services.Select(c => c.ServiceType)
                                 .Where(c => typeof(DbContext).IsAssignableFrom(c)).ToList();
-        if (dbContexts.Count() == 0)
-            throw new InvalidOperationException("No DbContexts found. Please register at least 1 before calling AddGenericMappingServices");
 
         foreach (var context in dbContexts)
             services.AddScoped(typeof(DbContext), context);
     }
 }
-

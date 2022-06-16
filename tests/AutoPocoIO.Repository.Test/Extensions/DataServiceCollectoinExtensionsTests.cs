@@ -9,20 +9,11 @@ namespace AutoPocoIO.Repository.Test.Extensions
     public class DataServiceCollectoinExtensionsTests
     {
         [Fact]
-
-        public void AddGenericMappingServices_Throws_WhenNoContextsRegistered()
-        {
-            ServiceCollection services = new();
-
-            Assert.Throws<InvalidOperationException>(() => services.AddGenericMappingServices());
-        }
-
-        [Fact]
         public void AddGenericMappingServices_AddDbContext_WhenContextsRegistered()
         {
             ServiceCollection services = new();
             services.AddDbContext<TestDbContext>();
-            services.AddGenericMappingServices();
+            services.AddAutoPocoIORepository();
 
             var provider = services.BuildServiceProvider();
             Assert.NotNull(provider.GetService<DbContext>());

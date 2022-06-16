@@ -1,8 +1,9 @@
 ﻿using System.Reflection;
 using AutoMapper;
 
-namespace AutoPocoIO.Repository.Internal;
-internal class MappingProfile : Profile
+namespace AutoPocoIO.Repository;
+
+public class MappingProfile : Profile
 {
     public MappingProfile() : base(Assembly.GetExecutingAssembly().GetName().Name)
     {

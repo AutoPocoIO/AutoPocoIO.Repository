@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoPocoIO.Repository.Internal;
+﻿using AutoMapper;
 using AutoPocoIO.Repository.Test.Services.TestUtilities;
 using Xunit;
 
-namespace AutoPocoIO.Repository.Test.Internal;
+namespace AutoPocoIO.Repository.Test;
+
 public class MappingProfileTests
 {
     public static IEnumerable<object[]> _data => new List<object[]>()

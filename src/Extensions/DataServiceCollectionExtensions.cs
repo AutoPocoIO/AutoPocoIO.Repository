@@ -58,6 +58,19 @@ public static class DataServiceCollectionExtensions
         return services;
     }
 
+    /// <summary>
+    /// Add all DbContexts as the base type
+    /// </summary>
+    /// <returns>The service collection to chain calls</returns>
+    public static void AddDbContexts(this IServiceCollection services)
+    {
+        var dbContexts = services.Select(c => c.ServiceType)
+                                .Where(c => typeof(DbContext).IsAssignableFrom(c)).ToList();
+
+        foreach (var context in dbContexts)
+            services.AddScoped(typeof(DbContext), context);
+    }
+
     private static IMapperConfigurationExpression AddProfileAssemblies(
         this IMapperConfigurationExpression expression,
         params Assembly[] profileAssemblies)
@@ -71,12 +84,5 @@ public static class DataServiceCollectionExtensions
         return expression;
     }
 
-    private static void AddDbContexts(this IServiceCollection services)
-    {
-        var dbContexts = services.Select(c => c.ServiceType)
-                                .Where(c => typeof(DbContext).IsAssignableFrom(c)).ToList();
-
-        foreach (var context in dbContexts)
-            services.AddScoped(typeof(DbContext), context);
-    }
+    
 }

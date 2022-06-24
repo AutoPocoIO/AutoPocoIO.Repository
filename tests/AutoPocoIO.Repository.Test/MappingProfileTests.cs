@@ -12,7 +12,7 @@ public class MappingProfileTests
          new object []{ new MappingProfile(typeof(MappingProfileTests).Assembly), "AutoPocoIO.Repository.Test" }
     };
 
-    public class PersonDtoWithMap : IEntityDto
+    public class PersonDtoWithMap : IEntityDto, IPerson
     {
         public int Id { get; set; }
         public string Name { get; set; } = default!;
@@ -39,8 +39,11 @@ public class MappingProfileTests
         Assert.Equal(profileName, mappingProfile.ProfileName);
     }
 
-    [Fact]
-    public void ApplyMappingsFromAssembly_AddsPersonEntiyToDtoMapping()
+    [Theory]
+    [InlineData(typeof(PersonDtoWithMap))]
+    [InlineData(typeof(OtherPersonDto))]
+    [InlineData(typeof(DefaultMapPersonDto))]
+    public void ApplyMappingsFromAssembly_AddsPersonEntiyToDtoMapping(Type destionationType)
     {
         var configuration = new MapperConfiguration(c => c.AddProfile(new MappingProfile(typeof(MappingProfileTests).Assembly)));
         var mapper = configuration.CreateMapper();
@@ -51,8 +54,9 @@ public class MappingProfileTests
             Name = "name1"
         };
 
-        var dto = mapper.Map<PersonDtoWithMap>(entity);
+        IPerson? dto = mapper.Map(entity, typeof(PersonEntity), destionationType) as IPerson;
 
+        Assert.NotNull(dto);
         Assert.Equal(1, dto.Id);
         Assert.Equal("name1", dto.Name);
 

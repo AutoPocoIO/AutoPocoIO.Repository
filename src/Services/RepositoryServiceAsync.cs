@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoPocoIO.Repository.Services;
 
@@ -62,11 +63,11 @@ public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEn
     public async Task<TDto?> GetFirstAsync(Expression<Func<TDto, bool>> expression)
     {
         var predicate = _mapper.Map<Expression<Func<TEntity, bool>>>(expression);
-        var entity = await _repository.GetFirstAsync(predicate);
-        if (entity == null)
-            return default;
+        var list = _repository.GetAll(predicate);
+        var projectedList = _mapper.ProjectTo<TDto>(list);
 
-        return _mapper.Map<TDto>(entity);
+        return await projectedList.FirstOrDefaultAsync();
+       
     }
 
     /// <inheritdoc/>

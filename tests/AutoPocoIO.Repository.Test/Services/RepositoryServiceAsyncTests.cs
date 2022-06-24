@@ -118,10 +118,14 @@ public class RepositoryServiceAsyncTests : SqliteTestBase<TestDbContext>
     public async Task GetByFirstAsync_MapsEntityToDtoWhenInRepository()
     {
         string? predicateMapped = null;
+        var context = new TestDbContext(Options);
+        context.Database.EnsureCreated();
+        context.People.Add(_entity);
+        context.SaveChanges();
 
-        _repository.Setup(c => c.GetFirstAsync(It.IsAny<Expression<Func<PersonEntity, bool>>>()))
+        _repository.Setup(c => c.GetAll(It.IsAny<Expression<Func<PersonEntity, bool>>>()))
              .Callback<Expression<Func<PersonEntity, bool>>>(c => predicateMapped = c.Body.ToString())
-            .ReturnsAsync(_entity);
+            .Returns(context.People);
 
         var result = await _service.GetFirstAsync(c => c.Id == 1);
 
@@ -133,10 +137,13 @@ public class RepositoryServiceAsyncTests : SqliteTestBase<TestDbContext>
     public async Task GetByFirstAsync_ReturnsNullWhenNotInRepository()
     {
         string? predicateMapped = null;
+        var context = new TestDbContext(Options);
+        context.Database.EnsureCreated();
 
-        _repository.Setup(c => c.GetFirstAsync(It.IsAny<Expression<Func<PersonEntity, bool>>>()))
-            .Callback<Expression<Func<PersonEntity, bool>>>(c => predicateMapped = c.Body.ToString())
-         .ReturnsAsync((PersonEntity?)null);
+        _repository.Setup(c => c.GetAll(It.IsAny<Expression<Func<PersonEntity, bool>>>()))
+             .Callback<Expression<Func<PersonEntity, bool>>>(c => predicateMapped = c.Body.ToString())
+            .Returns(context.People);
+
 
         var result = await _service.GetFirstAsync(c => c.Id == 1);
 

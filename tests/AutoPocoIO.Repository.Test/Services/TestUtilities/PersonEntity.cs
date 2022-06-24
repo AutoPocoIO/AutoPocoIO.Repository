@@ -20,7 +20,7 @@ public class PersonEntity : IEquatable<PersonEntity>
     }
 }
 
-public class PersonDto : IEntityDto, IEquatable<PersonDto>
+public class PersonDto : IEntityDto, IEquatable<PersonDto>, IPerson
 {
     public int Id { get; set; }
     public string Name { get; set; } = default!;
@@ -35,4 +35,10 @@ public class PersonDto : IEntityDto, IEquatable<PersonDto>
     {
 
     }
+}
+
+public interface IPerson
+{
+    public int Id { get; }
+    public string Name { get; }
 }

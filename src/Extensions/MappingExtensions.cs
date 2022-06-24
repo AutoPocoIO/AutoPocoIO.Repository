@@ -18,6 +18,7 @@ namespace AutoPocoIO.Repository.Extensions
             profile.CreateProjection<Entity, EntityDto>();
             profile.CreateMap<Entity, EntityDto>().ReverseMap();
         }
+
     }
 }
 

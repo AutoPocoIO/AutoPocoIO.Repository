@@ -35,6 +35,29 @@ public static class DataServiceCollectionExtensions
         return services;
     }
 
+    /// <summary>
+    /// Add required services and create all mappings
+    /// </summary>
+    /// <param name="services">The service collection to add to.</param>
+    /// <param name="profileAssemblies">Assemblies that include entites and dtos to map</param>
+    /// <returns>The service collection to chain calls</returns>
+    public static IServiceCollection AddAutoPocoIORepository<TContext>(
+        this IServiceCollection services,
+        params Assembly[] profileAssemblies) where TContext : DbContext
+    {
+        services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
+        services.AddTransient(typeof(IRepositoryServiceAsync<,>), typeof(RepositoryServiceAsync<,>));
+        services.AddScoped(typeof(IRepositoryFactory<>), typeof(RepositoryFactory<>));
+
+        services.AddAutoMapper(c => c.AddExpressionMapping()
+                                      .AddProfileAssemblies(profileAssemblies),
+                                typeof(MappingProfile));
+
+        services.AddDbContexts();
+
+        return services;
+    }
+
     private static IMapperConfigurationExpression AddProfileAssemblies(
         this IMapperConfigurationExpression expression,
         params Assembly[] profileAssemblies)

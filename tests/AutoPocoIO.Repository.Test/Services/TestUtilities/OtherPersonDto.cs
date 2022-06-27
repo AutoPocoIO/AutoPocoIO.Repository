@@ -18,3 +18,9 @@ public class DefaultMapPersonDto : IMapFrom<PersonEntity>, IPerson
     public int Id { get; set; }
     public string Name { get; set; } = default!;
 }
+
+public class DefaultProjectPersonDto : IProjectFrom<PersonEntity>, IPerson
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = default!;
+}

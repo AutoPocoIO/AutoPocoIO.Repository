@@ -8,5 +8,6 @@ namespace AutoPocoIO.Repository;
 /// <typeparam name="T"></typeparam>
 public interface IMapFrom<T> : IEntityDto
 {
-    void IEntityDto.Mapping(Profile profile) => profile.CreateMap(typeof(T), GetType());
+    void IEntityDto.Mapping(Profile profile) => AfterMapping(profile.CreateMap(typeof(T), GetType()));
+   
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using AutoPocoIO.Repository.Test.Services.TestUtilities;
 using Xunit;
 
@@ -56,6 +57,29 @@ public class MappingProfileTests
 
         IPerson? dto = mapper.Map(entity, typeof(PersonEntity), destionationType) as IPerson;
 
+        Assert.NotNull(dto);
+        Assert.Equal(1, dto.Id);
+        Assert.Equal("name1", dto.Name);
+
+    }
+
+    [Fact]
+    public void ApplyMappingsFromAssembly_AddsPersonEntiyToDtoProjection()
+    {
+        var configuration = new MapperConfiguration(c => c.AddProfile(new MappingProfile(typeof(MappingProfileTests).Assembly)));
+        var mapper = configuration.CreateMapper();
+
+        PersonEntity entity = new()
+        {
+            Id = 1,
+            Name = "name1"
+        };
+
+        var list = new[] { entity }.AsQueryable();
+
+        var dto = (IPerson)list.ProjectTo<DefaultProjectPersonDto>(configuration)
+                                .First();
+                        
         Assert.NotNull(dto);
         Assert.Equal(1, dto.Id);
         Assert.Equal("name1", dto.Name);

@@ -23,7 +23,8 @@ public class MappingProfile : Profile
             .Where(c => typeof(IEntityDto).IsAssignableFrom(c) && !c.IsInterface && !c.IsAbstract);
         bool HasInterface(Type t) => t.IsGenericType
             && ( t.GetGenericTypeDefinition() == typeof(IMapFrom<>) || 
-                 t.GetGenericTypeDefinition() == typeof(IMapAndProjectFrom<>));
+                 t.GetGenericTypeDefinition() == typeof(IMapAndProjectFrom<>) ||
+                 t.GetGenericTypeDefinition() == typeof(IProjectFrom<>));
 
         foreach (var type in types)
         {

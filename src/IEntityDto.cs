@@ -6,7 +6,7 @@ namespace AutoPocoIO.Repository;
 /// Marks a class as a data transfer object for a database entity
 /// </summary>
 public interface IEntityDto
-{
+{ 
     /// <summary>
     /// Configuration for mapping to entity.
     /// </summary>
@@ -17,6 +17,4 @@ public interface IEntityDto
     /// </summary>
     /// <param name="expression"></param>
     void AfterMapping(IMappingExpression expression) { }
-    
 }
-

@@ -21,8 +21,6 @@ public interface IRepositoryFactory<TContext> where TContext : DbContext
     /// <typeparam name="TEntity">The type of entity for which a set should be returned.</typeparam>
     /// <typeparam name="TDto">The type of data transfer object to map from <typeparamref name="TEntity"/></typeparam>
     /// <returns>An instance of <see cref="IRepositoryServiceAsync{TEntity, TDto}"/></returns>
-    IRepositoryServiceAsync<TEntity, TDto> CreateRepositoryService<TEntity, TDto>()
-        where TDto : IEntityDto
-        where TEntity : class;
+    IRepositoryServiceAsync<TEntity, TDto> CreateRepositoryService<TEntity, TDto>() where TEntity : class;
 }
 

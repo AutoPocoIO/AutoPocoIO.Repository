@@ -10,7 +10,6 @@ namespace AutoPocoIO.Repository.Services;
 /// <typeparam name="TEntity">Database model to map from</typeparam>
 /// <typeparam name="TDto">Data transfer object to map to</typeparam>
 public class RepositoryServiceAsync<TEntity, TDto> : IRepositoryServiceAsync<TEntity, TDto>
-    where TDto : IEntityDto
     where TEntity : class
 {
     private IRepositoryAsync<TEntity> _repository;

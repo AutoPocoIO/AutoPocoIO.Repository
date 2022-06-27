@@ -32,7 +32,6 @@ namespace AutoPocoIO.Repository.Services
 
         /// <inheritdoc/>
         public IRepositoryServiceAsync<TEntity, TDto> CreateRepositoryService<TEntity, TDto>()
-            where TDto : IEntityDto
             where TEntity : class
         {
             var repository = CreateRepository<TEntity>();
